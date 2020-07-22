@@ -11,3 +11,4 @@ class User(db.Model):
     can_be_disturbed = db.Column(db.Boolean)
     notes = db.Column(db.Text)
     created = db.Column(db.DateTime, default=datetime.utcnow)
+

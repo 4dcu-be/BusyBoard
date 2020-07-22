@@ -1,7 +1,9 @@
 import os
 
-from flask import Flask, Blueprint
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 db = SQLAlchemy()
 
@@ -16,9 +18,15 @@ def create_app(config):
     db.app = app
     db.init_app(app)
 
+    from busyboard.models import User
+
+    admin = Admin(app, name='BusyBoard', template_mode='bootstrap3')
+    admin.add_view(ModelView(User, db.session, endpoint='users'))
+
     @app.route('/')
     def main_route():
-        return 'hello world'
+        users = User.query.all()
+        return render_template('index.html', users=users)
 
     @app.cli.command()
     def createdb():

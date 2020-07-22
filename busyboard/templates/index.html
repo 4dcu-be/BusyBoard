@@ -1,0 +1,17 @@
+<html>
+<head><title>BusyBoard</title></head>
+<body>
+<a href="{{url_for('users.index_view')}}">Change status</a>
+{% for user in users %}
+<div class="user_main">
+    <h1>{{user.name}}</h1>
+    {% if user.busy %}
+    <p>is <strong>busy</strong></p>
+    {% else %}
+    <p>is <strong>not busy</strong></p>
+    {% endif %}
+
+</div>
+{% endfor %}
+</body>
+</html>

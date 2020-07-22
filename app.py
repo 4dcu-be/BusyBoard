@@ -1,8 +1,3 @@
-from flask import Flask
+from busyboard import create_app
 
-app = Flask(__name__)
-
-
-@app.route('/')
-def main():
-    return "hello world"
+app = create_app('config')

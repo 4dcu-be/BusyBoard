@@ -1,5 +1,6 @@
 from busyboard import db, images
 from datetime import datetime
+import arrow
 
 
 class User(db.Model):
@@ -25,3 +26,14 @@ class User(db.Model):
             return
         return images.path(self.path)
 
+    @property
+    def last_changed(self):
+        age_arrow = arrow.get(self.last_change)
+        return age_arrow.humanize()
+
+    @staticmethod
+    def on_change(mapper, connection, target):
+        target.last_change = datetime.utcnow()
+
+
+db.event.listen(User, 'before_update', User.on_change)

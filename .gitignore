@@ -132,4 +132,4 @@ dmypy.json
 
 db/
 
-static/images/*
+busyboard/static/images/*

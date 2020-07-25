@@ -1,4 +1,4 @@
-from busyboard import db, images, form
+from busyboard import db, images
 from datetime import datetime
 
 

@@ -15,6 +15,8 @@ class User(db.Model):
 
     @property
     def url(self):
+        if self.path is None:
+            return
         return images.url(self.path)
 
     @property

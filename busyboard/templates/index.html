@@ -10,15 +10,19 @@
     <div class="container">
         <h1 class="title is-1" style="display:inline">BusyBoard</h1><span> (<a href="{{url_for('users.index_view')}}">Change status</a>)</span>
         <hr />
-        <div class="columns">
+        <div class="columns is-multiline">
         {% for user in users %}
-            <div class="column">
+            <div class="column is-one-third-widescreen is-half-desktop is-half-tablet">
                 <div class="card">
                     <div class="card-content has-text-centered">
                         <div class="media">
                           <div class="media-left">
                               <figure class="image is-128x128">
-                                  <img class="is-rounded has-shadow" src="{{ user.url }}" />
+                                  {% if user.url %}
+                                    <img class="is-rounded has-shadow" src="{{ user.url }}" />
+                                  {% else %}
+                                    <img class="is-rounded has-shadow" src="{{ url_for('static', filename='no_profile.png') }}" />
+                                  {% endif %}
                               </figure>
                           </div>
                           <div class="media-content is-name">

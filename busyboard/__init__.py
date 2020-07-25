@@ -3,8 +3,7 @@ import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin, form
-from flask_admin.menu import MenuLink
-from busyboard.admin import UserAdminView
+from busyboard.admin import UserAdminView, CustomIndexView
 from flask_uploads import UploadSet, IMAGES, configure_uploads, patch_request_class
 
 db = SQLAlchemy()
@@ -27,9 +26,8 @@ def create_app(config):
 
     from busyboard.models import User
 
-    admin = Admin(app, name='BusyBoard', template_mode='bootstrap3')
+    admin = Admin(app, name='BusyBoard', template_mode='bootstrap3', index_view=CustomIndexView())
     admin.add_view(UserAdminView(User, db.session, endpoint='users'))
-    admin.add_link(MenuLink('Back', '/', 'back'))
 
     @app.route('/')
     def main_route():

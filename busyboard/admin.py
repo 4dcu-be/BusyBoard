@@ -1,9 +1,11 @@
+from flask import redirect, url_for
 from flask_admin.contrib.sqla import ModelView
 from busyboard import form
 from jinja2 import Markup
 import os
 import uuid
 from werkzeug import secure_filename
+from flask_admin import expose, AdminIndexView
 
 
 def _list_thumbnail(view, context, model, name):
@@ -41,3 +43,13 @@ class UserAdminView(ModelView):
             url_relative_path='images/',
         )
     }
+
+
+class CustomIndexView(AdminIndexView):
+    def is_visible(self):
+        # This view won't appear in the menu structure
+        return False
+
+    @expose('/')
+    def index(self):
+        return redirect(url_for('main_route'))

@@ -17,3 +17,6 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db', 'busyboard.
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'migrations')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = DEBUG
+
+UPLOADED_IMAGES_DEST = 'static/images'
+UPLOADED_IMAGES_URL = '/static/images/'

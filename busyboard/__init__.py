@@ -2,11 +2,14 @@ import os
 
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin
+from flask_admin import Admin, form
 from flask_admin.menu import MenuLink
 from busyboard.admin import UserAdminView
+from flask_uploads import UploadSet, IMAGES, configure_uploads, patch_request_class
 
 db = SQLAlchemy()
+
+images = UploadSet('images', IMAGES)
 
 
 def create_app(config):
@@ -18,6 +21,9 @@ def create_app(config):
 
     db.app = app
     db.init_app(app)
+
+    configure_uploads(app, (images))
+    patch_request_class(app, 16 * 1024 * 1024)
 
     from busyboard.models import User
 

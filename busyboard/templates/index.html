@@ -1,17 +1,38 @@
+<!DOCTYPE html>
 <html>
-<head><title>BusyBoard</title></head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <head><title>BusyBoard</title></head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 <body>
-<a href="{{url_for('users.index_view')}}">Change status</a>
-{% for user in users %}
-<div class="user_main">
-    <h1>{{user.name}}</h1>
-    {% if user.busy %}
-    <p>is <strong>busy</strong></p>
-    {% else %}
-    <p>is <strong>not busy</strong></p>
-    {% endif %}
-
-</div>
-{% endfor %}
+<section class="section">
+    <div class="container">
+        <h1 class="title is-1" style="display:inline">BusyBoard</h1><span> (<a href="{{url_for('users.index_view')}}">Change status</a>)</span>
+        <hr />
+        <div class="columns">
+        {% for user in users %}
+            <div class="column">
+                <div class="card">
+                    <div class="card-content has-text-centered">
+                        <p class="title">
+                          {{user.name}}
+                        </p>
+                    </div>
+                    <div class="card-content has-text-centered">
+                        {% if user.busy %}
+                        <p>is <strong class="is-size-3 has-text-danger">busy</strong>{% if user.busy_with %} with <strong>{{user.busy_with}}</strong> {%- endif -%}</p>
+                        {% if not user.can_be_disturbed %}
+                        <p>can <strong class="is-size-3 has-text-danger">not</strong> be disturbed</p>
+                        {% endif %}
+                        {% else %}
+                        <p>is <strong class="is-size-3 has-text-success">not busy</strong></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
 </body>
 </html>

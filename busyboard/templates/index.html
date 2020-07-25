@@ -15,9 +15,17 @@
             <div class="column">
                 <div class="card">
                     <div class="card-content has-text-centered">
-                        <p class="title">
-                          {{user.name}}
-                        </p>
+                        <div class="media">
+                          <div class="media-left">
+                              <figure class="image is-128x128">
+                                  <img class="is-rounded has-shadow" src="{{ user.url }}" />
+                              </figure>
+                          </div>
+                          <div class="media-content">
+                              <p class="title">
+                                  {{user.name}}
+                              </p>
+                          </div>
                     </div>
                     <div class="card-content has-text-centered">
                         {% if user.busy %}
@@ -30,6 +38,7 @@
                         {% endif %}
                     </div>
                 </div>
+            </div>
             </div>
         {% endfor %}
         </div>

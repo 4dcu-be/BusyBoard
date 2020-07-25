@@ -37,7 +37,7 @@ class UserAdminView(ModelView):
     form_extra_fields = {
         'path': form.ImageUploadField(
             'Image',
-            base_path='static/images',
+            base_path='busyboard/static/images',
             url_relative_path='images/',
         )
     }

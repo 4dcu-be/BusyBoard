@@ -14,7 +14,6 @@ SECRET_KEY = 'change me !'
 
 # Database settings, database location and path to migration scripts
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db', 'busyboard.db')
-SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'migrations')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = DEBUG
 

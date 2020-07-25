@@ -15,11 +15,11 @@ class User(db.Model):
 
     @property
     def url(self):
-        return images.url(self.filename)
+        return images.url(self.path)
 
     @property
     def filepath(self):
-        if self.filename is None:
+        if self.path is None:
             return
-        return images.path(self.filename)
+        return images.path(self.path)
 

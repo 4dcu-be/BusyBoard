@@ -10,5 +10,5 @@ class User(db.Model):
     busy_with = db.Column(db.Text)
     can_be_disturbed = db.Column(db.Boolean)
     notes = db.Column(db.Text)
-    created = db.Column(db.DateTime, default=datetime.utcnow)
+    last_change = db.Column(db.DateTime, default=datetime.utcnow)
 

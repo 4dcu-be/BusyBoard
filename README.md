@@ -27,7 +27,7 @@ Windows users need to use a small variation:
 git clone https://github.com/sepro/BusyBoard ./BusyBoard
 cd BusyBoard
 python -m venv venv
-source venv/bin/activate
+venv/Scripts/activate.bat
 pip install -r requirements.txt
 ```
 

@@ -35,5 +35,15 @@ class User(db.Model):
     def on_change(mapper, connection, target):
         target.last_change = datetime.utcnow()
 
+    def to_dict(self):
+        return {
+            'id': int(self.id),
+            'name': str(self.name),
+            'busy': bool(self.busy),
+            'busy_with': str(self.busy_with),
+            'can_be_distrubed': bool(self.can_be_disturbed),
+            'last_change': str(self.last_change)
+        }
+
 
 db.event.listen(User, 'before_update', User.on_change)

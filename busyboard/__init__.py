@@ -1,8 +1,9 @@
 import os
+import json
 
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin, form
+from flask_admin import Admin
 from busyboard.admin import UserAdminView, CustomIndexView
 from flask_uploads import UploadSet, IMAGES, configure_uploads, patch_request_class
 
@@ -33,6 +34,17 @@ def create_app(config):
     def main_route():
         users = User.query.all()
         return render_template('index.html', users=users)
+
+    @app.route('/api/users')
+    @app.route('/api/users/')
+    def api_users():
+        users = User.query.all()
+        return json.dumps(list([u.to_dict() for u in users]))
+
+    @app.route('/api/users/<int:user_id>')
+    def api_user(user_id: int):
+        user = User.query.get(user_id)
+        return json.dumps(user.to_dict())
 
     @app.cli.command()
     def createdb():

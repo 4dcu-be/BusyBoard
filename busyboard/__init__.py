@@ -1,7 +1,6 @@
 import os
-import json
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from busyboard.admin import UserAdminView, CustomIndexView
@@ -39,12 +38,12 @@ def create_app(config):
     @app.route('/api/users/')
     def api_users():
         users = User.query.all()
-        return json.dumps(list([u.to_dict() for u in users]))
+        return jsonify(list([u.to_dict() for u in users]))
 
     @app.route('/api/users/<int:user_id>')
     def api_user(user_id: int):
         user = User.query.get(user_id)
-        return json.dumps(user.to_dict())
+        return jsonify(user.to_dict())
 
     @app.cli.command()
     def createdb():

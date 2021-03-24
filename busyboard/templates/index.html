@@ -9,7 +9,7 @@
 <body>
 <section class="section">
     <div class="container">
-        <h1 class="title is-1" style="display:inline">BusyBoard</h1><span> (<a href="{{url_for('users.index_view')}}">Change status</a>)</span>
+        <h1 class="title is-1" style="display:inline">BusyBoard</h1><span> (<a href="{{url_for('users.index_view', _external=True)}}">Change status</a>)</span>
         <hr />
         <div class="columns is-multiline">
         {% for user in users %}
